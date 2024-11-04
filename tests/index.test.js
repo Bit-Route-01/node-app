@@ -12,7 +12,10 @@ const request = require('supertest'); // Assuming you're using supertest for tes
 let server;
 
 beforeAll((done) => {
-  server = app.listen(3000, () => {
+  server = app.listen(3000, (err) => {
+    if (err) {
+      return done(err); // Handle error starting the server
+    }
     done();
   });
 });
